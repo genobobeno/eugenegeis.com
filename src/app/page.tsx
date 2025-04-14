@@ -1,6 +1,6 @@
 "use client"
 
-import BackgroundAnimation from '@/components/BackgroundAnimation'
+import ParticleBackground from '@/components/ParticleBackground'
 import DataMachinesPlacard from '@/components/DataMachinesPlacard'
 import HumansPlacard from '@/components/HumansPlacard'
 import { motion } from 'framer-motion'
@@ -8,10 +8,10 @@ import { motion } from 'framer-motion'
 export default function Home() {
   return (
     <main className="min-h-screen p-8">
-      <BackgroundAnimation />
+      <ParticleBackground />
       
-      <div className="container mx-auto max-w-5xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-64 h-[80vh] mb-16">
+      <div className="container mx-auto max-w-5xl mt-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-32 h-[80vh] mb-16">
           <div className="w-7/8 mx-auto">
             <DataMachinesPlacard />
           </div>
