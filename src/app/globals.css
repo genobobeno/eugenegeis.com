@@ -1,8 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --teal: #09e0c6;
+  --purple: #cf0cd2;
+  --blue: #1516b9;
+  --light-purple: #e7e4ff;
+  --black: #000000;
 }
 
 @theme inline {
@@ -22,5 +31,31 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.subheading {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.fade-edge {
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+}
+
+.fade-all-edges {
+  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%),
+  linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+mask-composite: intersect;
+-webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%),
+          linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+-webkit-mask-composite: destination-in;
 }
