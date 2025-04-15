@@ -13,12 +13,12 @@ export default function Home() {
       <ParticleBackground />
       
       <div className="container mx-auto max-w-5xl mt-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 h-[80vh] mb-16">
-          <div className="w-4/5 mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 h-[80vh] md:h-[80vh] mb-16">
+          <div className="w-4/5 mx-auto md:h-full">
             <DataMachinesPlacard />
           </div>
 
-          <div className="w-4/5 mx-auto">
+          <div className="w-4/5 mx-auto md:h-full">
             <HumansPlacard />
           </div>
         </div>
@@ -54,8 +54,7 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="max-w-2xl mx-auto text-center"
         >
-          <h3 className="text-2xl font-bold text-white mb-4">Stay Connected</h3>
-          <div className="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
+          <div className="bg-white/10 rounded-lg p-2 backdrop-blur-sm">
             <SignupForm />
           </div>
         </motion.div>

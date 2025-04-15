@@ -19,9 +19,9 @@ export default function HumansPlacard() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="relative group h-full"
+      className="relative group h-full w-full aspect-[4/3] md:aspect-auto"
     >
-      <Link href="/humans" className="block h-full">
+      <Link href="/humans" className="block h-full w-full">
         <div className="absolute inset-0 bg-gradient-to-r from-[#09e0c6]/50 to-[#cf0cd2]/50 rounded-lg backdrop-blur-sm transition-all duration-300 group-hover:scale-105 overflow-hidden">
           <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
             <div className="relative w-[75%] aspect-square mb-6 rounded-2xl overflow-hidden">

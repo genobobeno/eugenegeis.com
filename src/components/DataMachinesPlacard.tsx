@@ -19,9 +19,9 @@ export default function DataMachinesPlacard() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="relative group h-full"
+      className="relative group h-full w-full aspect-[4/3] md:aspect-auto"
     >
-      <Link href="/machines" className="block h-full">
+      <Link href="/machines" className="block h-full w-full">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/50 to-purple-900/50 rounded-lg backdrop-blur-sm transition-all duration-300 group-hover:scale-105 overflow-hidden">
           <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
             <div className="relative w-[75%] aspect-square mb-6">
