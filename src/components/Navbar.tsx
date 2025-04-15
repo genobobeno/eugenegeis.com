@@ -27,7 +27,7 @@ export default function Navbar() {
               Humans
             </Link>
             <Link href="/blog" className="text-white/80 hover:text-white transition-colors">
-              Blog
+              Links
             </Link>
             <a 
               href="https://www.phd2pro.com" 

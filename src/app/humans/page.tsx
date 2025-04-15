@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import { Canvas } from '@react-three/fiber'
 import { Suspense, useMemo } from 'react'
+import SignupForm from '@/components/SignupForm'
+import Image from 'next/image'
 
 function Particles() {
   const count = 5000
@@ -85,7 +87,17 @@ export default function Humans() {
           transition={{ duration: 0.8 }}
           className="prose prose-invert max-w-none"
         >
-          <h1 className="text-4xl font-bold mb-8">Humans-In-The-Loop</h1>
+          <div className="flex items-center gap-4 mb-8">
+            <div className="relative w-12 h-12">
+              <Image
+                src="/images/HumansLogo.png"
+                alt="Humans Logo"
+                fill
+                className="object-contain"
+              />
+            </div>
+            <h1 className="text-4xl font-bold">Humans-In-The-Loop</h1>
+          </div>
 
           <div className="mb-12">
             {quotes.map((quote, index) => (
@@ -185,9 +197,7 @@ export default function Humans() {
 
           <div className="bg-white/10 rounded-lg p-8 backdrop-blur-sm">
             <h2 className="text-2xl font-semibold mb-6">Contact Me</h2>
-            <div className="h-96 bg-white/5 rounded flex items-center justify-center">
-              <iframe aria-label='Product Enquiry' src='https://forms.zohopublic.com/helloeugen1/form/ProductEnquiry/formperma/qXhfA-RhMCHfLAn7FpHUICMoUKo0vUmpqHj5eOJO8i0'></iframe>
-            </div>
+            <SignupForm />
           </div>
         </motion.div>
       </div>

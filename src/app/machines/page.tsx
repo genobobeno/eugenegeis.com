@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Stars } from '@react-three/drei'
 import { Suspense } from 'react'
+import SignupForm from '@/components/SignupForm'
+import Image from 'next/image'
 
 function Scene() {
   return (
@@ -19,6 +21,33 @@ function Scene() {
 }
 
 export default function Machines() {
+  const placards = [
+    {
+      title: "Forge Your Future with Efficiency",
+      description: "Transform your business operations with AI-driven automation. Our solutions streamline workflows, reduce manual tasks, and create scalable systems that grow with your business."
+    },
+    {
+      title: "Cut the Costs, Keep the Value",
+      description: "Identify and eliminate unnecessary expenses while maintaining quality. Our data-driven approach helps you optimize resources and maximize ROI across all departments."
+    },
+    {
+      title: "Discover Your Hidden Potential",
+      description: "Unlock insights hidden in your data. Our advanced analytics reveal opportunities for growth, innovation, and competitive advantage you never knew existed."
+    },
+    {
+      title: "Break the Chains of Inefficiency",
+      description: "Eliminate bottlenecks and outdated practices. We help you implement modern, efficient systems that free your team to focus on what matters most."
+    },
+    {
+      title: "Data-Driven Decision Making",
+      description: "Make confident business decisions backed by real-time data and predictive analytics. Our dashboards and reports provide clear insights when you need them most."
+    },
+    {
+      title: "Future-Proof Your Business",
+      description: "Stay ahead of the competition with cutting-edge AI solutions. We help you build resilient systems that adapt to changing market conditions and customer needs."
+    }
+  ]
+
   return (
     <main className="min-h-screen p-8">
       <div className="fixed inset-0 -z-10">
@@ -32,7 +61,17 @@ export default function Machines() {
           transition={{ duration: 0.8 }}
           className="prose prose-invert max-w-none"
         >
-          <h1 className="text-4xl font-bold mb-8">Data Machines</h1>
+          <div className="flex items-center gap-4 mb-8">
+            <div className="relative w-12 h-12">
+              <Image
+                src="/images/DataEngines.png"
+                alt="Data Engines Logo"
+                fill
+                className="object-contain"
+              />
+            </div>
+            <h1 className="text-4xl font-bold">Data Machines</h1>
+          </div>
           
           <div className="bg-white/10 rounded-lg p-8 backdrop-blur-sm mb-12">
             <p className="text-lg leading-relaxed">
@@ -48,26 +87,17 @@ export default function Machines() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {[
-              "Forge Your Future with Efficiency",
-              "Cut the Costs, Keep the Value",
-              "Smarter Processes, Bigger Profits",
-              "Discover Your Hidden Potential",
-              "Break the Chains of Inefficiency",
-              "From Overhead to Opportunity"
-            ].map((title, index) => (
+            {placards.map((placard, index) => (
               <motion.div
-                key={title}
+                key={placard.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-white/5 rounded-lg p-6 backdrop-blur-sm hover:bg-white/10 transition-colors"
               >
-                <h3 className="text-xl font-semibold mb-4">{title}</h3>
+                <h3 className="text-xl font-semibold mb-4">{placard.title}</h3>
                 <p className="text-white/80">
-                  Are outdated processes holding your business back? We can help you combine 
-                  cutting-edge AI and machine learning insights with a hands-on approach to 
-                  uncover hidden inefficiencies and reduce overhead.
+                  {placard.description}
                 </p>
               </motion.div>
             ))}
@@ -75,9 +105,7 @@ export default function Machines() {
 
           <div className="bg-white/10 rounded-lg p-8 backdrop-blur-sm">
             <h2 className="text-2xl font-semibold mb-6">Contact Me</h2>
-            <div className="h-96 bg-white/5 rounded flex items-center justify-center">
-            <iframe aria-label='Product Enquiry' src='https://forms.zohopublic.com/helloeugen1/form/ProductEnquiry/formperma/qXhfA-RhMCHfLAn7FpHUICMoUKo0vUmpqHj5eOJO8i0'></iframe>
-            </div>
+            <SignupForm />
           </div>
         </motion.div>
       </div>
