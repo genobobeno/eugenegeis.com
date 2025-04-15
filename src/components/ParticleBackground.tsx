@@ -5,36 +5,25 @@ import * as THREE from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
 
 function Scene() {
-  const pointsRef = useRef<THREE.Points>(null)
-  const velocities = useRef<Float32Array>(new Float32Array(200 * 3))
-  const trails = useRef<Float32Array[]>([])
-  const trailLength = 60
+  const groupRef = useRef<THREE.Group>(null)
+  const particleCount = 400  // Doubled from 200
+  const velocities = useRef<Float32Array>(new Float32Array(particleCount * 3))
   const time = useRef(0)
-  const mainParticles = new Float32Array(200 * 3)
-  const trailParticles = new Float32Array(200 * 3)
-  const colors = new Float32Array(200 * 3)
-  const opacities = new Float32Array(200)
-  const sizes = new Float32Array(200)
-  const trailOpacities = new Float32Array(200)
-  const trailSizes = new Float32Array(200)
-  const trailVelocities = new Float32Array(200 * 2)
-  const trailColors = new Float32Array(200 * 3)
-  const trailPositions = new Float32Array(200 * 3)
-  const trailLifetimes = new Float32Array(200)
-  const trailMaxLifetime = 0.5
-  const trailUpdateInterval = 0.05
-  const trailUpdateTimer = useRef(0)
   const mainParticleOpacity = 0.421875
-  const trailParticleOpacity = 0.2109375
+  const trailLength = 30  // Doubled from 15
+  const trailParticles = useRef<THREE.Points[]>([])
+  const trailPositions = useRef<Float32Array[]>([])
+  const trailOpacities = useRef<Float32Array[]>([])
 
+  // Initialize particles
   useEffect(() => {
-    if (!pointsRef.current) return
+    const group = groupRef.current
+    if (!group) return
 
     // Create geometry with multiple particles
     const geometry = new THREE.BufferGeometry()
-    const particleCount = 200
     const positions = new Float32Array(particleCount * 3)
-    
+
     // Initialize particle positions at center
     for (let i = 0; i < particleCount; i++) {
       const i3 = i * 3
@@ -47,15 +36,6 @@ function Scene() {
       velocities.current[i3] = Math.cos(angle) * 0.015
       velocities.current[i3 + 1] = Math.sin(angle) * 0.015
       velocities.current[i3 + 2] = 0
-
-      // Initialize trail for each particle
-      trails.current[i] = new Float32Array(trailLength * 3)
-      for (let j = 0; j < trailLength; j++) {
-        const j3 = j * 3
-        trails.current[i][j3] = 0
-        trails.current[i][j3 + 1] = 0
-        trails.current[i][j3 + 2] = 0
-      }
     }
 
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
@@ -69,84 +49,99 @@ function Scene() {
       opacity: mainParticleOpacity
     })
 
-    // Create material for trails with adjusted size
-    const trailMaterial = new THREE.PointsMaterial({
-      color: 0xffffff,
-      size: 0.02,
-      sizeAttenuation: true,
-      transparent: true,
-      opacity: trailParticleOpacity
-    })
-
     // Create main points
     const mainPoints = new THREE.Points(geometry, mainMaterial)
-    pointsRef.current.add(mainPoints)
+    group.add(mainPoints)
 
-    // Create trail points
-    const trailGeometry = new THREE.BufferGeometry()
-    const trailPositions = new Float32Array(particleCount * trailLength * 3)
-    trailGeometry.setAttribute('position', new THREE.BufferAttribute(trailPositions, 3))
-    const trailPoints = new THREE.Points(trailGeometry, trailMaterial)
-    pointsRef.current.add(trailPoints)
+    // Initialize trail particles
+    for (let i = 0; i < trailLength; i++) {
+      const trailGeometry = new THREE.BufferGeometry()
+      const trailPos = new Float32Array(particleCount * 3)
+      const trailOpacity = new Float32Array(particleCount)
+      
+      trailGeometry.setAttribute('position', new THREE.BufferAttribute(trailPos, 3))
+      trailGeometry.setAttribute('opacity', new THREE.BufferAttribute(trailOpacity, 1))
+      
+      const trailMaterial = new THREE.PointsMaterial({
+        color: 0xffffff,
+        size: 0.02,
+        sizeAttenuation: true,
+        transparent: true,
+        opacity: mainParticleOpacity * (1 - (i / trailLength) * 0.7)
+      })
+
+      const trailPoints = new THREE.Points(trailGeometry, trailMaterial)
+      group.add(trailPoints)
+      
+      trailParticles.current.push(trailPoints)
+      trailPositions.current.push(trailPos)
+      trailOpacities.current.push(trailOpacity)
+    }
 
     return () => {
-      if (pointsRef.current) {
-        pointsRef.current.remove(mainPoints)
-        pointsRef.current.remove(trailPoints)
+      if (group) {
+        group.remove(mainPoints)
+        trailParticles.current.forEach(trail => group.remove(trail))
         geometry.dispose()
-        trailGeometry.dispose()
         mainMaterial.dispose()
-        trailMaterial.dispose()
+        trailParticles.current.forEach(trail => {
+          trail.geometry.dispose()
+          if (trail.material instanceof THREE.Material) {
+            trail.material.dispose()
+          }
+        })
       }
     }
   }, [])
 
   useFrame(() => {
-    if (!pointsRef.current || !pointsRef.current.children[0]) return
+    const group = groupRef.current
+    if (!group || !group.children[0]) return
 
     time.current += 0.008
 
-    const mainPoints = pointsRef.current.children[0] as THREE.Points
-    const trailPoints = pointsRef.current.children[1] as THREE.Points
+    const mainPoints = group.children[0] as THREE.Points
     const positions = mainPoints.geometry.attributes.position.array as Float32Array
-    const trailPositions = trailPoints.geometry.attributes.position.array as Float32Array
 
     // Update colors with smoother transitions
     const mainMaterial = mainPoints.material as THREE.PointsMaterial
-    const trailMaterial = trailPoints.material as THREE.PointsMaterial
 
     // Color oscillation between teal (#09e0c6), purple (#cf0cd2), and blue (#1516b9)
     const hue = (Math.sin(time.current) * 0.5 + 0.5) * 0.6 + 0.4
     const color = new THREE.Color().setHSL(hue, 0.8, 0.6)
     mainMaterial.color = color
-    trailMaterial.color = color
 
-    for (let i = 0; i < 200; i++) {
+    // Update trail positions
+    for (let i = trailLength - 1; i > 0; i--) {
+      const currentPositions = trailPositions.current[i]
+      const prevPositions = trailPositions.current[i - 1]
+      const currentOpacities = trailOpacities.current[i]
+      const prevOpacities = trailOpacities.current[i - 1]
+
+      for (let j = 0; j < particleCount * 3; j++) {
+        currentPositions[j] = prevPositions[j]
+        if (j % 3 === 0) {
+          currentOpacities[j / 3] = prevOpacities[j / 3]
+        }
+      }
+
+      trailParticles.current[i].geometry.attributes.position.needsUpdate = true
+      trailParticles.current[i].geometry.attributes.opacity.needsUpdate = true
+    }
+
+    // Update main particles and first trail position
+    for (let i = 0; i < particleCount; i++) {
       const i3 = i * 3
       
-      // Update trail with smoother interpolation
-      for (let j = trailLength - 1; j > 0; j--) {
-        const j3 = j * 3
-        const prevJ3 = (j - 1) * 3
-        trails.current[i][j3] = trails.current[i][prevJ3] * 0.95 + trails.current[i][j3] * 0.05
-        trails.current[i][j3 + 1] = trails.current[i][prevJ3 + 1] * 0.95 + trails.current[i][j3 + 1] * 0.05
-        trails.current[i][j3 + 2] = trails.current[i][prevJ3 + 2] * 0.95 + trails.current[i][j3 + 2] * 0.05
-      }
-      trails.current[i][0] = positions[i3]
-      trails.current[i][1] = positions[i3 + 1]
-      trails.current[i][2] = positions[i3 + 2]
-
-      // Update trail positions
-      for (let j = 0; j < trailLength; j++) {
-        const j3 = (i * trailLength + j) * 3
-        trailPositions[j3] = trails.current[i][j * 3]
-        trailPositions[j3 + 1] = trails.current[i][j * 3 + 1]
-        trailPositions[j3 + 2] = trails.current[i][j * 3 + 2]
-      }
-
       // Update position with velocity
       positions[i3] += velocities.current[i3]
       positions[i3 + 1] += velocities.current[i3 + 1]
+
+      // Update first trail position
+      trailPositions.current[0][i3] = positions[i3]
+      trailPositions.current[0][i3 + 1] = positions[i3 + 1]
+      trailPositions.current[0][i3 + 2] = positions[i3 + 2]
+      trailOpacities.current[0][i] = mainParticleOpacity
 
       // Boundary reflection
       const boundary = 2
@@ -161,13 +156,12 @@ function Scene() {
     }
 
     mainPoints.geometry.attributes.position.needsUpdate = true
-    trailPoints.geometry.attributes.position.needsUpdate = true
+    trailParticles.current[0].geometry.attributes.position.needsUpdate = true
+    trailParticles.current[0].geometry.attributes.opacity.needsUpdate = true
   })
 
   return (
-    <>
-      <primitive object={new THREE.Group()} ref={pointsRef} />
-    </>
+    <group ref={groupRef} />
   )
 }
 
