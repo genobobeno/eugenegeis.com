@@ -14,17 +14,17 @@ export default function Home() {
       
       <div className="container mx-auto max-w-5xl mt-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 h-[80vh] md:h-[80vh] mb-16">
-          <div className="w-4/5 mx-auto h-[70vh] md:h-full">
+          <div className="w-4/5 mx-auto h-[80vh] md:h-full">
             <DataMachinesPlacard />
           </div>
 
-          <div className="w-4/5 mx-auto h-[70vh] md:h-full">
+          <div className="w-4/5 mx-auto h-[80vh] md:h-full">
             <HumansPlacard />
           </div>
         </div>
       </div>
 
-      <div className="w-full bg-[#1516b9]/20 backdrop-blur-sm py-8 mb-16">
+      <div className="w-full bg-[#1516b9]/20 backdrop-blur-sm py-8 mb-16 mt-[80vh] md:mt-0">
         <div className="container mx-auto max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
