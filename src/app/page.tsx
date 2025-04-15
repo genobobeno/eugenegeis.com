@@ -24,7 +24,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full bg-[#1516b9]/20 backdrop-blur-sm py-8 mb-16 mt-[100vh] md:mt-0 [@media(orientation:landscape)_and_(max-width:1024px)]:mt-[120vh]">
+      <div className="w-full bg-[#1516b9]/20 backdrop-blur-sm py-8 mb-16 mt-[100vh] md:mt-0 [@media(orientation:landscape)_and_(max-width:1024px)]:mt-[160vh]">
         <div className="container mx-auto max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
