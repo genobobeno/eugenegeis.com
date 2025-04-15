@@ -83,73 +83,47 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Navigation */}
-          <div 
-            className={`md:hidden fixed inset-0 bg-black transition-all duration-300 z-[100] ${
-              isMenuOpen 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 -translate-y-full pointer-events-none'
-            }`}
-          >
-            <div className="absolute inset-0 bg-black/95 backdrop-blur-sm">
-              <div className="flex flex-col items-center justify-center h-full space-y-8 pt-20">
-                <button
-                  onClick={() => setIsMenuOpen(false)}
-                  className="absolute top-4 right-4 text-white focus:outline-none"
-                  aria-label="Close menu"
-                >
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
+          {isMenuOpen && (
+            <div className="md:hidden absolute top-16 left-0 right-0 bg-black border-b border-white/10">
+              <div className="flex flex-col space-y-4 p-4">
                 <Link 
                   href="/" 
-                  className="text-white/80 hover:text-white transition-colors text-xl"
+                  className="text-white/80 hover:text-white transition-colors text-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Home
                 </Link>
                 <Link 
                   href="/machines" 
-                  className="text-white/80 hover:text-white transition-colors text-xl"
+                  className="text-white/80 hover:text-white transition-colors text-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Machines
                 </Link>
                 <Link 
                   href="/humans" 
-                  className="text-white/80 hover:text-white transition-colors text-xl"
+                  className="text-white/80 hover:text-white transition-colors text-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Humans
                 </Link>
                 <Link 
                   href="/blog" 
-                  className="text-white/80 hover:text-white transition-colors text-xl"
+                  className="text-white/80 hover:text-white transition-colors text-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Links
                 </Link>
                 <Link 
                   href="/contact" 
-                  className="text-white/80 hover:text-white transition-colors text-xl"
+                  className="text-white/80 hover:text-white transition-colors text-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Contact
                 </Link>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </nav>
