@@ -29,17 +29,20 @@ export default function Navbar() {
             <Link href="/blog" className="text-white/80 hover:text-white transition-colors">
               Blog
             </Link>
-            <button 
-              onClick={() => {
-                const contactSection = document.getElementById('contact');
-                if (contactSection) {
-                  contactSection.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
+            <a 
+              href="https://www.phd2pro.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              PhD2Pro
+            </a>
+            <Link 
+              href="/contact"
               className="text-white/80 hover:text-white transition-colors"
             >
               Contact
-            </button>
+            </Link>
           </div>
         </div>
       </div>

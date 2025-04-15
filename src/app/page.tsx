@@ -3,6 +3,8 @@
 import ParticleBackground from '@/components/ParticleBackground'
 import DataMachinesPlacard from '@/components/DataMachinesPlacard'
 import HumansPlacard from '@/components/HumansPlacard'
+import Footer from '@/components/Footer'
+import SignupForm from '@/components/SignupForm'
 import { motion } from 'framer-motion'
 
 export default function Home() {
@@ -11,12 +13,12 @@ export default function Home() {
       <ParticleBackground />
       
       <div className="container mx-auto max-w-5xl mt-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-32 h-[80vh] mb-16">
-          <div className="w-7/8 mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 h-[80vh] mb-16">
+          <div className="w-4/5 mx-auto">
             <DataMachinesPlacard />
           </div>
 
-          <div className="w-7/8 mx-auto">
+          <div className="w-4/5 mx-auto">
             <HumansPlacard />
           </div>
         </div>
@@ -32,9 +34,13 @@ export default function Home() {
           >
             <h3 className="text-2xl font-bold text-white mb-4">About Me</h3>
             <p className="text-lg">
-              I am Eugene Geis, a professional who bridges the gap between technical innovation and human potential. 
-              With expertise in both machine learning and human development, I help organizations and individuals 
-              navigate the complex intersection of technology and humanity.
+              At 46, I have changed careers multiple times, moving across multiple domains and productionalizing quant methods for growing businesses.  Simultaneously, I have always focused on the gap between technical innovation and human values; with a broad background in teaching, mentorship, debate, and meditative training, I help organizations and individuals struggling to adjust to the hyperacceleration of technical and cultural change. 
+              With expertise in both AI and human conceptual development, I help organizations and individuals 
+              navigate the increasingly complex intersection of technology and community.
+            </p>
+            <br />
+            <p className="text-lg">
+              I can help with the tech, and I can help with the people who build, sell, or use it. My goal is to help builders and users to achieve the most collective <i><b>human</b></i> good through the entire process.
             </p>
           </motion.div>
         </div>
@@ -46,17 +52,16 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="max-w-2xl mx-auto"
+          className="max-w-2xl mx-auto text-center"
         >
           <h3 className="text-2xl font-bold text-white mb-4">Stay Connected</h3>
           <div className="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
-            {/* Zoho Forms iframe will go here */}
-            <div className="h-96 bg-white/5 rounded flex items-center justify-center">
-              <p className="text-white/50">Zoho Forms Integration Coming Soon</p>
-            </div>
+            <SignupForm />
           </div>
         </motion.div>
       </div>
+
+      <Footer />
     </main>
   )
 }

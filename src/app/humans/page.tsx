@@ -8,12 +8,22 @@ function Particles() {
   const count = 5000
   const positions = useMemo(() => {
     const positions = new Float32Array(count * 3)
+    const colors = new Float32Array(count * 3)
     for (let i = 0; i < count; i++) {
       positions[i * 3] = (Math.random() - 0.5) * 10
       positions[i * 3 + 1] = (Math.random() - 0.5) * 10
       positions[i * 3 + 2] = (Math.random() - 0.5) * 10
+      
+      // Assign colors based on position
+      const color = Math.random() < 0.5 ? 
+        [0.035, 0.878, 0.776] : // Teal (#09e0c6)
+        [0.812, 0.051, 0.82]    // Purple (#cf0cd2)
+      
+      colors[i * 3] = color[0]
+      colors[i * 3 + 1] = color[1]
+      colors[i * 3 + 2] = color[2]
     }
-    return positions
+    return { positions, colors }
   }, [])
 
   return (
@@ -22,16 +32,23 @@ function Particles() {
         <bufferAttribute
           attach="attributes-position"
           count={count}
-          array={positions}
+          array={positions.positions}
           itemSize={3}
-          args={[positions, 3]}
+          args={[positions.positions, 3]}
+        />
+        <bufferAttribute
+          attach="attributes-color"
+          count={count}
+          array={positions.colors}
+          itemSize={3}
+          args={[positions.colors, 3]}
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.05}
-        color="#ffffff"
+        size={0.02}
+        vertexColors
         transparent
-        opacity={0.6}
+        opacity={0.3}
         sizeAttenuation
       />
     </points>
@@ -50,7 +67,7 @@ function Scene() {
 }
 
 const quotes = [
-  "Stories are truer than the Truth. - Proverb",
+  "Stories are truer than the Truth - Proverb",
   "The Universe is a machine for the making of gods. - Henri Bergson"
 ]
 
@@ -61,14 +78,14 @@ export default function Humans() {
         <Scene />
       </div>
 
-      <div className="container mx-auto max-w-4xl">
+      <div className="container mx-auto max-w-4xl mt-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="prose prose-invert max-w-none"
         >
-          <h1 className="text-4xl font-bold mb-8">Humans</h1>
+          <h1 className="text-4xl font-bold mb-8">Humans-In-The-Loop</h1>
 
           <div className="mb-12">
             {quotes.map((quote, index) => (
@@ -126,27 +143,41 @@ export default function Humans() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             {[
-              "Rebuilding Trust, Unlocking Potential",
-              "Transforming Teams, Restoring Relationships",
-              "Trust: The Competitive Advantage",
-              "Repair, Reimagine, Realign",
-              "From Division to Connection",
-              "Trust: The Foundation of Growth",
-              "Bridge the Gap, Build the Future",
-              "Reimagine Your Organization&apos;s Potential"
-            ].map((title, index) => (
+              {
+                title: "Rebuilding Trust, Unlocking Potential",
+                description: "Transform your organization's culture by rebuilding trust at every level. Our approach combines proven leadership techniques with innovative team-building strategies to create an environment where potential can flourish."
+              },
+              {
+                title: "Transforming Teams, Restoring Relationships",
+                description: "Break down barriers and rebuild connections within your team. We help organizations move from conflict to collaboration, creating stronger relationships that drive better results."
+              },
+              {
+                title: "Trust: The Competitive Advantage",
+                description: "In today's fast-paced business environment, trust is your most valuable asset. Learn how to leverage trust as a strategic advantage that sets your organization apart."
+              },
+              {
+                title: "Repair, Reimagine, Realign",
+                description: "Heal past wounds and create a new vision for your team's future. Our process helps organizations move beyond past challenges and align around shared goals."
+              },
+              {
+                title: "From Division to Connection",
+                description: "Turn workplace divisions into opportunities for growth. We help teams bridge gaps, find common ground, and build stronger connections that drive success."
+              },
+              {
+                title: "Trust: The Foundation of Growth",
+                description: "Build a solid foundation for sustainable growth through trust-based leadership. Our methods help organizations create environments where innovation and progress thrive."
+              }
+            ].map((item, index) => (
               <motion.div
-                key={title}
+                key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-white/5 rounded-lg p-6 backdrop-blur-sm hover:bg-white/10 transition-colors"
               >
-                <h3 className="text-xl font-semibold mb-4">{title}</h3>
+                <h3 className="text-xl font-semibold mb-4">{item.title}</h3>
                 <p className="text-white/80">
-                  Trust is the cornerstone of any successful business, yet it&apos;s often the most fragile. 
-                  Whether you&apos;re grappling with disconnection within your team or facing skepticism from 
-                  customers, we help you rebuild bridges and reignite collaboration.
+                  {item.description}
                 </p>
               </motion.div>
             ))}
@@ -155,7 +186,7 @@ export default function Humans() {
           <div className="bg-white/10 rounded-lg p-8 backdrop-blur-sm">
             <h2 className="text-2xl font-semibold mb-6">Contact Me</h2>
             <div className="h-96 bg-white/5 rounded flex items-center justify-center">
-              <p className="text-white/50">Contact Form Coming Soon</p>
+              <iframe aria-label='Product Enquiry' src='https://forms.zohopublic.com/helloeugen1/form/ProductEnquiry/formperma/qXhfA-RhMCHfLAn7FpHUICMoUKo0vUmpqHj5eOJO8i0'></iframe>
             </div>
           </div>
         </motion.div>

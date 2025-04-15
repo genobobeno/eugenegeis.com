@@ -25,14 +25,14 @@ export default function Machines() {
         <Scene />
       </div>
 
-      <div className="container mx-auto max-w-4xl">
+      <div className="container mx-auto max-w-4xl mt-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="prose prose-invert max-w-none"
         >
-          <h1 className="text-4xl font-bold mb-8">Machines</h1>
+          <h1 className="text-4xl font-bold mb-8">Data Machines</h1>
           
           <div className="bg-white/10 rounded-lg p-8 backdrop-blur-sm mb-12">
             <p className="text-lg leading-relaxed">
@@ -76,7 +76,7 @@ export default function Machines() {
           <div className="bg-white/10 rounded-lg p-8 backdrop-blur-sm">
             <h2 className="text-2xl font-semibold mb-6">Contact Me</h2>
             <div className="h-96 bg-white/5 rounded flex items-center justify-center">
-              <p className="text-white/50">Contact Form Coming Soon</p>
+            <iframe aria-label='Product Enquiry' src='https://forms.zohopublic.com/helloeugen1/form/ProductEnquiry/formperma/qXhfA-RhMCHfLAn7FpHUICMoUKo0vUmpqHj5eOJO8i0'></iframe>
             </div>
           </div>
         </motion.div>
