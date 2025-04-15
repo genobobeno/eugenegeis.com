@@ -29,24 +29,25 @@ export default function Blog() {
           <h1 className="text-4xl font-bold mb-8">Links</h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-white/10 rounded-lg p-8 backdrop-blur-sm">
-              <h2 className="text-2xl font-semibold mb-4">X Feed</h2>
-              <div className="h-140 bg-white/5 rounded flex items-center justify-center overflow-hidden">
+            <div className="bg-white/10 rounded-lg p-8 backdrop-blur-sm border border-white/10 shadow-lg">
+              <h2 className="text-2xl font-semibold mb-6">X Feed</h2>
+              <div className="overflow-hidden rounded-lg transition-all duration-300 hover:shadow-xl">
                 <blockquote className="twitter-tweet" data-theme="dark">
                   &mdash; Eugene Geis (@EugeneGeis) 
                   <a href="https://twitter.com/EugeneGeis/status/1903807889023590416">March, 2025</a>
                 </blockquote>
+                <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
               </div>
             </div>
 
-            <div className="bg-white/10 rounded-lg p-8 backdrop-blur-sm">
+            <div className="bg-white/10 rounded-lg p-8 backdrop-blur-sm border border-white/10 shadow-lg">
               <h2 className="text-2xl font-semibold mb-6">Connect with Me</h2>
               <div className="space-y-6">
                 <Link
                   href="https://www.linkedin.com/in/eugenegeis"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+                  className="block p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg border border-white/5"
                 >
                   <h3 className="text-xl font-semibold mb-2">LinkedIn</h3>
                   <p className="text-white/80">
@@ -58,7 +59,7 @@ export default function Blog() {
                   href="https://medium.com/@eugene.geis"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+                  className="block p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg border border-white/5"
                 >
                   <h3 className="text-xl font-semibold mb-2">Medium</h3>
                   <p className="text-white/80">
@@ -70,7 +71,7 @@ export default function Blog() {
                   href="https://orcid.org/0000-0001-6836-4554"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+                  className="block p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg border border-white/5"
                 >
                   <h3 className="text-xl font-semibold mb-2">ORCID</h3>
                   <p className="text-white/80">
@@ -82,7 +83,7 @@ export default function Blog() {
                   href="https://phd2pro.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+                  className="block p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg border border-white/5"
                 >
                   <h3 className="text-xl font-semibold mb-2">PhD2Pro</h3>
                   <p className="text-white/80">
