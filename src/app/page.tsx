@@ -14,11 +14,11 @@ export default function Home() {
       
       <div className="container mx-auto max-w-5xl mt-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 h-[80vh] md:h-[80vh] mb-16">
-          <div className="w-4/5 mx-auto md:h-full">
+          <div className="w-4/5 mx-auto h-[60vh] md:h-full">
             <DataMachinesPlacard />
           </div>
 
-          <div className="w-4/5 mx-auto md:h-full">
+          <div className="w-4/5 mx-auto h-[60vh] md:h-full">
             <HumansPlacard />
           </div>
         </div>
