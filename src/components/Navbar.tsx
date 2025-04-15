@@ -83,8 +83,34 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Navigation */}
-          <div className={`md:hidden fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-300 ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-            <div className="flex flex-col items-center justify-center h-full space-y-8">
+          <div 
+            className={`md:hidden fixed inset-0 bg-black/95 backdrop-blur-sm transition-all duration-300 z-50 ${
+              isMenuOpen 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 -translate-y-full pointer-events-none'
+            }`}
+          >
+            <div className="flex flex-col items-center justify-center h-full space-y-8 pt-16">
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="absolute top-4 right-4 text-white focus:outline-none"
+                aria-label="Close menu"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
               <Link 
                 href="/" 
                 className="text-white/80 hover:text-white transition-colors text-xl"
