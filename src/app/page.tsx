@@ -14,17 +14,17 @@ export default function Home() {
       
       <div className="container mx-auto max-w-5xl mt-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 h-[80vh] md:h-[80vh] mb-16 [@media(orientation:landscape)_and_(max-width:1024px)]:grid-cols-2 [@media(orientation:landscape)_and_(max-width:1024px)]:h-[40vh]">
-          <div className="w-4/5 mx-auto h-[80vh] md:h-full [@media(orientation:landscape)_and_(max-width:1024px)]:h-[120vh]">
+          <div className="w-4/5 mx-auto h-[80vh] md:h-full [@media(orientation:landscape)_and_(max-width:1024px)]:h-[160vh]">
             <DataMachinesPlacard />
           </div>
 
-          <div className="w-4/5 mx-auto h-[80vh] md:h-full [@media(orientation:landscape)_and_(max-width:1024px)]:h-[120vh]">
+          <div className="w-4/5 mx-auto h-[80vh] md:h-full [@media(orientation:landscape)_and_(max-width:1024px)]:h-[160vh]">
             <HumansPlacard />
           </div>
         </div>
       </div>
 
-      <div className="w-full bg-[#1516b9]/20 backdrop-blur-sm py-8 mb-16 mt-[100vh] md:mt-0 [@media(orientation:landscape)_and_(max-width:1024px)]:mt-[80vh]">
+      <div className="w-full bg-[#1516b9]/20 backdrop-blur-sm py-8 mb-16 mt-[100vh] md:mt-0 [@media(orientation:landscape)_and_(max-width:1024px)]:mt-[120vh]">
         <div className="container mx-auto max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
