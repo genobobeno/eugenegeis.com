@@ -153,7 +153,7 @@ export default function Humans() {
             us question everything.
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
                 title: "Rebuilding Trust, Unlocking Potential",
@@ -185,12 +185,10 @@ export default function Humans() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white/5 rounded-lg p-6 backdrop-blur-sm hover:bg-white/10 transition-colors"
+                className="bg-white/10 rounded-lg p-8 backdrop-blur-sm border border-white/10 shadow-lg min-h-[200px] flex flex-col"
               >
-                <h3 className="text-xl font-semibold mb-4">{item.title}</h3>
-                <p className="text-white/80">
-                  {item.description}
-                </p>
+                <h3 className="text-2xl font-semibold mb-4">{item.title}</h3>
+                <p className="text-white/80 flex-grow">{item.description}</p>
               </motion.div>
             ))}
           </div>
