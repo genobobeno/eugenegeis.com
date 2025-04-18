@@ -10,7 +10,7 @@ function Scene() {
   const velocities = useRef<Float32Array>(new Float32Array(particleCount * 3))
   const time = useRef(0)
   const mainParticleOpacity = 0.421875
-  const trailLength = 30  // Doubled from 15
+  const trailLength = 60  // Doubled from 30
   const trailParticles = useRef<THREE.Points[]>([])
   const trailPositions = useRef<Float32Array[]>([])
   const trailOpacities = useRef<Float32Array[]>([])
@@ -43,10 +43,10 @@ function Scene() {
     // Create material for main particles with slightly larger size
     const mainMaterial = new THREE.PointsMaterial({
       color: 0xffffff,
-      size: 0.03,
+      size: 0.01,
       sizeAttenuation: true,
       transparent: true,
-      opacity: mainParticleOpacity
+      opacity: 0.2
     })
 
     // Create main points
@@ -64,10 +64,10 @@ function Scene() {
       
       const trailMaterial = new THREE.PointsMaterial({
         color: 0xffffff,
-        size: 0.02,
+        size: 0.007,
         sizeAttenuation: true,
         transparent: true,
-        opacity: mainParticleOpacity * (1 - (i / trailLength) * 0.7)
+        opacity: 0.2 * (1 - (i / trailLength) * 0.7)
       })
 
       const trailPoints = new THREE.Points(trailGeometry, trailMaterial)
