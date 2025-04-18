@@ -101,8 +101,7 @@ export default function Machines() {
             ))}
           </div>
 
-          <div className="bg-white/10 rounded-lg p-8 backdrop-blur-sm">
-            <h2 className="text-2xl font-semibold mb-6">Contact Me</h2>
+          <div className="mt-12 bg-white/10 rounded-lg p-6 backdrop-blur-sm max-w-2xl mx-auto">
             <SignupForm />
           </div>
         </motion.div>

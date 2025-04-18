@@ -17,14 +17,14 @@ const SignupForm: React.FC = () => {
   }, [])
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-4">
+    <div className="w-full max-w-md mx-auto p-2">
       <iframe
         src="https://forms.zohopublic.com/helloeugen1/form/ProductEnquiry2/formperma/nB1ikwbLmRwUXxZTE-uyPor5Be5BG--rWmwWaQO-WG4"
         width="100%"
-        height="800px"
+        height="630px"
         frameBorder="0"
         allowFullScreen
-        style={{ border: 'none' }}
+        style={{ border: 'none', minHeight: '600px' }}
       />
     </div>
   )

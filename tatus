@@ -1,5 +1,5 @@
-[33mcommit cab78e66b4aa348885e42e575fe3a0cc323467eb[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+[33mcommit bdc0b38acc548ba312bc8aafa2794af54f32adf6[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
 Author: egeis978@bitbucket.com <eugene@bitscopic.com>
-Date:   Mon Apr 14 23:48:05 2025 -0400
+Date:   Thu Apr 17 21:39:45 2025 -0400
 
-    Update website with new features: Added contact page, adjusted particle effects, improved navigation, and enhanced content layout
+    feat: adjust particle background - smaller particles and longer trails
